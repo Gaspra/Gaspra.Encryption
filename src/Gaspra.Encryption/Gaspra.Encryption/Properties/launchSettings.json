@@ -1,0 +1,16 @@
+{
+    "profiles": {
+        "Dev.Gaspra.Encryption": {
+            "commandName": "Project",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "dev"
+            }
+        },
+        "Prd.Gaspra.Encryption": {
+            "commandName": "Project",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "prd"
+            }
+        }
+    }
+}
