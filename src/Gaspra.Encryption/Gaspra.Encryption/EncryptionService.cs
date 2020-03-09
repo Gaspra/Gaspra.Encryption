@@ -1,22 +1,31 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using ConsoleAppFramework;
+using Gaspra.Signing.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Gaspra.Encryption
 {
-    public class EncryptionService : IHostedService
+    public class EncryptionService : ConsoleAppBase
     {
-        public Task StartAsync(CancellationToken cancellationToken)
+        private readonly SigningService signingService;
+
+        public EncryptionService(SigningService signingService)
         {
-            throw new NotImplementedException();
+            this.signingService = signingService;
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public void Run(
+            [Option("e", "text to be encrypted")] string encrypt = "",
+            [Option("d", "text to be decrypted")] string decrypt = "")
         {
-            throw new NotImplementedException();
+            if(!string.IsNullOrWhiteSpace(encrypt))
+            {
+                Console.WriteLine(signingService.Encrypt(encrypt));
+            }
+
+            if(!string.IsNullOrWhiteSpace(decrypt))
+            {
+                Console.WriteLine(signingService.Decrypt(decrypt));
+            }
         }
     }
 }
